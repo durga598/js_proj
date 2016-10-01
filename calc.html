@@ -5,8 +5,25 @@
     <meta charset="utf-8">
     <title>Calculator</title>
     <style>
-        div {
+        body {
+            background-color: tan;
+        }
+
+        .box {
             display: block;
+            text-align: center;
+            background-color: #3d4543;
+            height: 300px;
+            width: 250px;
+            border-radius: 10px;
+            position: relative;
+            top: 80px;
+            left: 40%;
+        }
+
+        .input {
+          top: 20%;
+            position: relative;
         }
     </style>
     <script type="text/javascript">
@@ -26,71 +43,27 @@
             switch (x) {
                 case 0:
                     res = a + b;
-
-                case 1:
-                    res = a - b;
-                    document.getElementById("rbox").value = res;
+                    document.getElementById("rbox").innerHTML = res;
                     break;
 
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;
-                        res = a / b;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;;
-
                 case 1:
                     res = a - b;
-                    document.getElementById("rbox").value = res;
+                    document.getElementById("rbox").innerHTML = res;
                     break;
 
                 case 2:
                     if (b == 0) {
-                        document.getElementById("rbox").value = "Cant divide by Zero";
-                        res = a / b;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
+                        document.getElementById("rbox").innerHTML = "Cant divide by Zero";
                         break;
+                    } else {
                         res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;
-                        res = a / b;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;;
-
-                case 1:
-                    res = a - b;
-                    document.getElementById("rbox").value = res;
-                    break;
-
-                case 2:
-                    if (b == 0) {
-                        document.getElementById("rbox").value = "Cant divide by Zero";
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
-                        break;
-                        res = a / b;
-                        document.getElementById("rbox").value = res;
+                        document.getElementById("rbox").innerHTML = res;
                         break;
                     }
 
                 case 3:
                     res = a * b;
-                    document.getElementById("rbox").value = res;
+                    document.getElementById("rbox").innerHTML = res;
                     break;
             }
         }
@@ -98,18 +71,24 @@
 </head>
 
 <body>
-    <div>
-        <form class="" action="index.html" method="post">
-            <input type="number" id="fbox" name="fbox" placeholder="First Num"><br>
-            <input type="number" id="sbox" name="sbox" placeholder="Second Num"><br>
-            <select id="funcSelect">
-              <option value="add">addition</option>
-              <option value="sub">subtraction</option>
-              <option value="div">division</option>
-              <option value="mul">multiplication</option></select><br> Result:
-            <input type="text" id="rbox" name="rbox" value="" disabled><br>
-            <input type="button" name="calc" value="calculate" onclick="calcFunc()">
-        </form>
+    <div class="box">
+        <div class="input">
+            <form action="index.html" method="post">
+
+                <input type="number" id="fbox" name="fbox" placeholder="First Num"><br>
+                <input type="number" id="sbox" name="sbox" placeholder="Second Num"><br>
+                <select id="funcSelect">
+                  <option value="add">addition</option>
+                  <option value="sub">subtraction</option>
+                  <option value="div">division</option>
+                  <option value="mul">multiplication</option></select><br>
+               Result:
+                <p id="rbox"></p>
+                <input type="button" name="calc" value="Calculate" onclick="calcFunc()">
+                <input type="reset" name="calc" value="Reset">
+
+            </form>
+        </div>
     </div>
 </body>
 
