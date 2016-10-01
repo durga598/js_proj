@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <style>
+        div {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        var a = 0;
+        var b = 0;
+        var x;
+        var res;
+
+
+        function calcFunc() {
+
+            a = parseInt(document.getElementById("fbox").value);
+            b = parseInt(document.getElementById("sbox").value);
+
+            x = document.getElementById("funcSelect").selectedIndex;
+
+            switch (x) {
+                case 0:
+                    res = a + b;
+
+                case 1:
+                    res = a - b;
+                    document.getElementById("rbox").value = res;
+                    break;
+
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;;
+
+                case 1:
+                    res = a - b;
+                    document.getElementById("rbox").value = res;
+                    break;
+
+                case 2:
+                    if (b == 0) {
+                        document.getElementById("rbox").value = "Cant divide by Zero";
+                        res = a / b;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;;
+
+                case 1:
+                    res = a - b;
+                    document.getElementById("rbox").value = res;
+                    break;
+
+                case 2:
+                    if (b == 0) {
+                        document.getElementById("rbox").value = "Cant divide by Zero";
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                        res = a / b;
+                        document.getElementById("rbox").value = res;
+                        break;
+                    }
+
+                case 3:
+                    res = a * b;
+                    document.getElementById("rbox").value = res;
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <form class="" action="index.html" method="post">
+            <input type="number" id="fbox" name="fbox" placeholder="First Num"><br>
+            <input type="number" id="sbox" name="sbox" placeholder="Second Num"><br>
+            <select id="funcSelect">
+              <option value="add">addition</option>
+              <option value="sub">subtraction</option>
+              <option value="div">division</option>
+              <option value="mul">multiplication</option></select><br> Result:
+            <input type="text" id="rbox" name="rbox" value="" disabled><br>
+            <input type="button" name="calc" value="calculate" onclick="calcFunc()">
+        </form>
+    </div>
+</body>
+
+</html>
