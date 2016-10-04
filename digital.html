@@ -1,3 +1,8 @@
+/**
+*@fileName:digital.html
+*@createBy:Durga
+*date:04/10/2016
+*purpose:To Show Digital clock and random data from JSON object */
 <html>
 
 <head>
@@ -89,6 +94,11 @@
             } // add zero in front of numbers < 10
             return i;
         }
+
+        /**
+         *Book detail in JSON
+         *
+         */
         var myJSON = '{"book":[' +
             '{"id": "1", "name": "The Luminaries", "author": "Eleanor Catton", "date": "15 October 2013", "publication": "Little, Brown and Company " },' +
             '{"id": "2","name": "The Vegetarian","author": "Han Kang","date": "2 Feb 2016","publication": "Hogarth"},' +
@@ -97,9 +107,16 @@
             '{"id": "5","name": "A Life in Diplomacy","author": "Maharajakrishna Rasgotra","date": "28 April 2016","publication": "Viking" },' +
             '{"id": "6","name": "The Forgotten Room","author": "Lincoln Child","date": "13 July 2016","publication": "Constable & Robinson" },' +
             '{"id": "7", "name": "In Other Words","author": "Jhumpa Lahiri","date": "9 February 2016","publication": "Hamish Hamilton" }]}';
-
+        /**
+         *Parsing to JSON
+         *
+         */
         var json = JSON.parse(myJSON);
 
+        /**
+         *getData function to display the json data
+         *
+         */
         function getData() {
             var dataId = Math.floor(Math.random() * (6 - 0 + 1) + 0);
             document.getElementById("bname").innerHTML = json.book[dataId].name;
