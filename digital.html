@@ -1,0 +1,179 @@
+<html>
+
+<head>
+    <title>Digital Clock and JSON</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css" />
+
+    <style>
+    .tabBlock {
+            background-color: #57574f;
+            border: solid 0px #FFA54F;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            max-width: 200px;
+            width: 100%;
+            overflow: hidden;
+            display: block;
+        }
+
+        .clock {
+            vertical-align: middle;
+            font-family: Orbitron;
+            font-size: 40px;
+            font-weight: normal;
+            color: #FFF;
+            padding: 10px;
+        }
+
+        .clocklg {
+            vertical-align: middle;
+            font-family: Orbitron;
+            font-size: 20px;
+            font-weight: normal;
+            color: #FFF;
+        }
+
+        .dataDiv {
+            background-color: #e5e6de;
+            margin: 15 auto;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .mainDiv {
+            background-color: #F3F3F3;
+            max-width: 300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #bookTable tr:nth-child(odd) {
+            color: red;
+        }
+
+        #bookTable td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #bookTable th {
+            text-decoration: underline;
+        }
+    }
+    </style>
+    <script>
+        // FUNCTION WHICH IS EXECUTED ON LOAD OF THE PAGE.
+        function digitized() {
+            var today = new Date(); // DATE() CONSTRUCTOR FOR CURRENT SYSTEM DATE AND TIME.
+            var hrs = today.getHours();
+            var min = today.getMinutes();
+            var sec = today.getSeconds();
+            min = checkTime(min);
+            sec = checkTime(sec);
+            document.getElementById('dc').innerHTML = hrs + ":" + min;
+            document.getElementById('dc_second').innerHTML = sec;
+            if (hrs > 12) {
+                document.getElementById('dc_hour').innerHTML = 'PM';
+            } else {
+                document.getElementById('dc_hour').innerHTML = 'AM';
+            }
+            var t = setTimeout(digitized, 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            } // add zero in front of numbers < 10
+            return i;
+        }
+        var myJSON = '{"book":[' +
+            '{"id": "1", "name": "The Luminaries", "author": "Eleanor Catton", "date": "15 October 2013", "publication": "Little, Brown and Company " },' +
+            '{"id": "2","name": "The Vegetarian","author": "Han Kang","date": "2 Feb 2016","publication": "Hogarth"},' +
+            '{"id": "3","name": "One Indian girl","author": "Chetan Bhagat","date": "1 October 2016","publication": "Rupa Publications India" },' +
+            '{"id": "4","name": "Six Machine", "author": "Chris Gayle","date": "6 June 2016","publication": "Penguin UK" },' +
+            '{"id": "5","name": "A Life in Diplomacy","author": "Maharajakrishna Rasgotra","date": "28 April 2016","publication": "Viking" },' +
+            '{"id": "6","name": "The Forgotten Room","author": "Lincoln Child","date": "13 July 2016","publication": "Constable & Robinson" },' +
+            '{"id": "7", "name": "In Other Words","author": "Jhumpa Lahiri","date": "9 February 2016","publication": "Hamish Hamilton" }]}';
+
+        var json = JSON.parse(myJSON);
+
+        function getData() {
+            var dataId = Math.floor(Math.random() * (6 - 0 + 1) + 0);
+            document.getElementById("bname").innerHTML = json.book[dataId].name;
+            document.getElementById("author").innerHTML = json.book[dataId].author;
+            document.getElementById("pdate").innerHTML = json.book[dataId].date;
+            document.getElementById("pub").innerHTML = json.book[dataId].publication;
+            setTimeout(getData, 3000);
+        }
+    </script>
+</head>
+
+<!-- ON LOAD OF THE PAGE, THE CLOCK WILL START TICKING. -->
+
+<body onload="getData(); digitized();">
+    <div class="mainDiv" style="">
+
+        <table class="tabBlock" align="center" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+                <td class="clock" id="dc"></td>
+                <!-- THE DIGITAL CLOCK. -->
+                <td>
+                    <table cellpadding="0" cellspacing="0" border="0">
+
+                        <!-- HOUR IN 'AM' AND 'PM'. -->
+                        <tr>
+                            <td class="clocklg" id="dc_hour"></td>
+                        </tr>
+
+                        <!-- SHOWING SECONDS. -->
+                        <tr>
+                            <td class="clocklg" id="dc_second"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div class="dataDiv" style="">
+            <fieldset>
+                <legend align="center"><b>BOOK DETAILS<b></legend>
+                  <table align="center" id="bookTable">
+
+                      <!-- SHOWING BOOK NAME. -->
+                      <tr>
+                          <th>Name of Book</th>
+                      </tr>
+                      <tr>
+                          <td id="bname"></td>
+                      </tr>
+
+                      <!-- SHOWING AUTHOR. -->
+                      <tr>
+                          <th>Author</th>
+                      </tr>
+                      <tr>
+                          <td id="author"></td>
+                      </tr>
+
+                      <!-- SHOWING PUBLICATION DATE. -->
+                      <tr>
+                          <th>Publication Date</th>
+                      </tr>
+                      <tr>
+                          <td id="pdate"></td>
+                      </tr>
+
+                      <!-- SHOWING PUBLISHER. -->
+                      <tr>
+                          <th>Publisher</th>
+                      </tr>
+                      <tr>
+                          <td id="pub"></td>
+                      </tr>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</body>
