@@ -1,0 +1,155 @@
+<!--
+*@fileName:calc_currying.html
+*@createBy:Durga
+*date:05/10/2016
+*purpose:caluclator using currying method -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-color: tan;
+        }
+
+        .box {
+            display: block;
+            text-align: center;
+            background-color: #3d4543;
+            height: 300px;
+            width: 250px;
+            border-radius: 10px;
+            position: relative;
+            top: 80px;
+            left: 40%;
+        }
+
+        .input {
+            top: 20%;
+            position: relative;
+        }
+    </style>
+    <script type="text/javascript">
+        var a = 0;
+        var b = 0;
+        var x;
+        var res;
+
+
+        function calcFunc() {
+            /**
+             *add two numbers using currying method
+             *@function
+             *@param{number}-num1  passing a value
+             *@return{function}
+             *@param{number}-num2 passing b value
+             *@return{number} addition of two numbers
+             */
+            var addition = function(num1) {
+                return function(num2) {
+                    return num1 + num2;
+                }
+            };
+            /**
+             *subtraction two numbers using currying method
+             *@return{number} subtract of two numbers
+             */
+            var subtraction = function(num1) {
+                return function(num2) {
+                    return num1 - num2;
+                }
+            };
+
+            /**
+             *multiplication two numbers using currying method
+             *@Return multiplication of two numbers
+             */
+            var multiplication = function(a) {
+                return function(b) {
+                    return a * b;
+                }
+            };
+
+            /**
+             *division of two numbers using currying method
+             *@Return division of two numbers
+             *If divisor is ZERO, it returns "Cant be divisible. "
+             */
+            var division = function(num1) {
+                return function(num2) {
+                    return num1 / num2;
+                }
+            };
+
+            /**
+             * Getting value from text box.
+             *@param{number}-a getting value from first text box
+             *@param{number}-b getting value from second text box
+             */
+            a = parseInt(document.getElementById("fbox").value);
+            b = parseInt(document.getElementById("sbox").value);
+
+            /**
+             * Value which is used in switch case to do required functions .
+             *@param{number}-x getting selected index value from dropdown menu .
+             */
+            x = document.getElementById("funcSelect").selectedIndex;
+
+            switch (x) {
+                case 0:
+                    var add = addition(a);
+                    var addto = add(b);
+                    document.getElementById("rbox").innerHTML = addto;
+                    break;
+
+                case 1:
+                    var sub = subtraction(a);
+                    var subto = sub(b);
+                    document.getElementById("rbox").innerHTML = subto;
+                    break;
+
+                case 2:
+                    if (b == 0) {
+                        document.getElementById("rbox").innerHTML = "Cant divide by Zero";
+                        break;
+                    } else {
+                        var divide = division(a);
+                        var dividewith = divide(b);
+                        document.getElementById("rbox").innerHTML = dividewith;
+                        break;
+                    }
+
+                case 3:
+                    var mul = multiplication(a);
+                    var multo = mul(b);
+                    document.getElementById("rbox").innerHTML = multo;
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <div class="input">
+            <form action="index.html" method="post">
+
+                <input type="number" id="fbox" name="fbox" placeholder="First Num"><br>
+                <input type="number" id="sbox" name="sbox" placeholder="Second Num"><br>
+                <select id="funcSelect">
+                  <option value="add">addition</option>
+                  <option value="sub">subtraction</option>
+                  <option value="div">division</option>
+                  <option value="mul">multiplication</option></select><br> Result:
+                <p id="rbox"></p>
+                <input type="button" name="calc" value="Calculate" onclick="calcFunc()">
+                <input type="reset" name="calc" value="Reset">
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
