@@ -1,0 +1,71 @@
+<!--
+*@fileName:digital.html
+*@createBy:Durga
+*date:04/10/2016
+*purpose:Function Chain -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Function Chain</title>
+    <script>
+        /**
+         *to create calculate prototype
+         *@constructor
+         *@this{number}-num1
+         *@this{number}-num2
+         */
+        var calculate = function() {
+                this.num1 = 0;
+                this.num2 = 0;
+            }
+            /**
+             *@param {number}-num1 to pass the value to the  first function
+             */
+        calculate.prototype.First = function(num1) {
+                this.num1 = num1;
+            }
+            /**
+             *@param {number}-num2 to pass the value to the  first function
+             */
+        calculate.prototype.Second = function(num2) {
+                this.num2 = num2;
+            }
+            /**
+             *@constructor
+             *@the sum function is adding the two variable in above functions
+             */
+        calculate.prototype.sum = function() {
+                var result = this.num1 + this.num2;
+                document.write("the result is " + result);
+            }
+            /**
+             * abc is an instance of calculate
+             */
+        var abc = new calculate();
+
+        /**
+         *in1 first variable input by user
+         */
+        var in1 = parseInt(prompt("Enter First Number:"));
+        abc.First(in1);
+
+        /**
+         *in2 second variable input by user
+         */
+        var in2 = parseInt(prompt("Enter Second Number:"));
+        abc.Second(in2);
+
+        /**
+         *@Calling sum function from prototype
+         */
+        abc.sum();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

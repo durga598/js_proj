@@ -1,0 +1,53 @@
+<!--
+*@fileName:digital.html
+*@createBy:Durga
+*date:05/10/2016
+*purpose:To check javascript object equality -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Equal Object</title>
+    <script>
+        /**
+         *compare two strings
+         *@constructor
+         *@param{strings}-a,b passing the two strings from object into the function
+         */
+        function eqality(a, b) {
+            if (a === b) {
+                document.write("both are equal" + "<br>");
+            } else {
+                document.write("both are not equal" + "<br>");
+            }
+        }
+
+        /**
+         *@constructor
+         *@Definition for person object
+         */
+        function person(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+        }
+
+        /**
+         *Creating two person object
+         */
+        var myFather = new person("John", "Doe", 50, "blue");
+        var myMother = new person("Sally", "Rally", 48, "green");
+
+        /**
+         *@function calling
+         */
+        eqality(myFather, myFather);
+        document.write(".................................." + "<br>");
+        eqality(myFather, myMother);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

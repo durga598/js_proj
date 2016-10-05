@@ -1,0 +1,51 @@
+<!--
+*@fileName:digital.html
+*@createBy:Durga
+*date:04/10/2016
+*purpose:Extending Date Object -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Date Extend</title>
+    <script>
+        /**
+         *@ Declaring variable name .
+         */
+        var daynames;
+
+        /**
+         *@Initialing Date Object .
+         */
+        now = new Date();
+
+        /**
+         *@Returns DayName
+         */
+        Date.prototype.getUTCDayName = function() {
+            daynames = new Array('Sunday', 'Monday', 'Tuesday',
+                'Wednesday', 'Thursday', 'Friday', 'Saturday');
+            return daynames[this.getUTCDay()];
+        };
+
+        /**
+         *@Returns NextDayName
+         */
+        Date.prototype.getNextDay = function() {
+            return daynames[this.getUTCDay() + 1];
+        };
+        /**
+         *@Writes Present Day Name And Next Day Name .
+         */
+        document.write("Today : " + now.getUTCDayName()+"</br>");
+        document.write("Tomorrow : " + now.getNextDay());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

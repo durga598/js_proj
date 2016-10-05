@@ -1,0 +1,45 @@
+<!--
+*@fileName:digital.html
+*@createBy:Durga
+*date:05/10/2016
+*purpose:prefix apply() -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>prefix apply()</title>
+    <script>
+
+    var str = "BridgeLabz ";
+    /**
+     *@ param(...args) Takes variable args and print in alert box
+     */
+    function prefix(...args)
+    {
+      for (i = 0; i < args.length; i++) {
+          document.write(this + " " + args[i] + "<br><br>");
+      }
+    }
+
+    /**
+     *Takes input from user
+     */
+     do{
+    var n = parseInt(window.prompt("enter the number of argument:"), 10);
+}while(isNaN(n) || n < 1){
+    var x = [];
+    for (var i = 0; i < n; i++) {
+        x[i] = prompt("enter the "+(i+1)+" "+"argument:");
+    }
+  }
+
+    /**
+     *Adding prefix using apply()
+     */
+    prefix.apply(str, x);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

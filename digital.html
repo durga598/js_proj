@@ -1,8 +1,8 @@
-/**
+<!--
 *@fileName:digital.html
 *@createBy:Durga
 *date:04/10/2016
-*purpose:To Show Digital clock and random data from JSON object */
+*purpose:To Show Digital clock and random data from JSON object -->
 <html>
 
 <head>
@@ -88,6 +88,11 @@
             var t = setTimeout(digitized, 500);
         }
 
+       /**
+        *@constructor
+        *@param{number}-i passing a value
+        *@return{number} add zero in front of numbers < 10
+        */
         function checkTime(i) {
             if (i < 10) {
                 i = "0" + i;
