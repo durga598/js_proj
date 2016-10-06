@@ -85,14 +85,9 @@
             } else {
                 document.getElementById('dc_hour').innerHTML = 'AM';
             }
-            var t = setTimeout(digitized, 500);
+            var t = setTimeout(digitized, 1000);
         }
 
-       /**
-        *@constructor
-        *@param{number}-i passing a value
-        *@return{number} add zero in front of numbers < 10
-        */
         function checkTime(i) {
             if (i < 10) {
                 i = "0" + i;
@@ -113,17 +108,16 @@
             '{"id": "6","name": "The Forgotten Room","author": "Lincoln Child","date": "13 July 2016","publication": "Constable & Robinson" },' +
             '{"id": "7", "name": "In Other Words","author": "Jhumpa Lahiri","date": "9 February 2016","publication": "Hamish Hamilton" }]}';
         /**
-         *Parsing to JSONpic
+         *Parsing to JSON
          *
          */
         var json = JSON.parse(myJSON);
-
         /**
          *getData function to display the json data
          *
          */
         function getData() {
-            var dataId = Math.floor(Math.random() * (6 - 0 + 1) + 0);
+            var dataId = Math.floor(Math.random() * json.book.length);
             document.getElementById("bname").innerHTML = json.book[dataId].name;
             document.getElementById("author").innerHTML = json.book[dataId].author;
             document.getElementById("pdate").innerHTML = json.book[dataId].date;

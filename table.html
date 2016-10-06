@@ -1,0 +1,150 @@
+<!--
+*@fileName:table.html
+*@createBy:Durga
+*date:06/10/2016
+*purpose:add row and columns , and delete column using javascript -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Table Using Javascript</title>
+    <script>
+        /**
+         *param{hrow} variable used to define header of table
+         */
+        var hrow;
+
+        /**
+         *@Constructor
+         *@function used to create table
+         */
+        function addTable() {
+            var myTableDiv = document.getElementById("myDynamicTable");
+
+            var table = document.createElement('TABLE');
+            table.border = '1';
+            table.id = "myTable";
+
+            var tableBody = document.createElement('TBODY');
+            table.appendChild(tableBody);
+
+            /**
+             *@param{number}: trow -Takes the input for number of row
+             *@param{number}: tcolumn -Takes the input for number of column
+             */
+            do {
+                var trow = prompt("Enter total row");
+            } while (isNaN(trow) || trow < 1 || trow == '');
+            do {
+                var tcolumn = prompt("Enter total columns");
+            } while (isNaN(trow) || trow < 1 || trow == '');
+
+            /**
+             *creates table header
+             */
+            var header = table.createTHead();
+            hrow = header.insertRow(0);
+
+            for (var i = 1; i <= tcolumn; i++) {
+                th = document.createElement('TH');
+                var x = prompt("Enter " + i + " : column name :");
+                th.innerHTML = x;
+                hrow.appendChild(th);
+            }
+
+            /**
+             *Add number of rows given by user
+             */
+            for (var i = 1; i < trow; i++) {
+                var tr = document.createElement('TR');
+                tr.id = i;
+                tableBody.appendChild(tr);
+
+                /**
+                 *Add number of rows given by user
+                 */
+
+                for (var j = 0; j < tcolumn; j++) {
+                    var td = document.createElement('TD');
+                    td.appendChild(document.createTextNode("Row" + i + " CELL" + j));
+                    tr.appendChild(td);
+                }
+            }
+            myTableDiv.appendChild(table);
+        }
+
+        /**
+         *@Constructor
+         *@function used to add row at last index
+         */
+        function addRow() {
+            var table = document.getElementById("myTable");
+            var tabRows = table.rows.length;
+            var row = table.insertRow(tabRows);
+            var tabColumn = table.rows[0].cells.length;
+            row.id = tabRows;
+            for (var i = 0; i < tabColumn; i++) {
+                row.insertCell(i).innerHTML = "Row" + tabRows + " CELL" + (i + 1);
+            }
+        }
+
+        /**
+         *@Constructor
+         *@function used to add row at last index
+         */
+        function addColumn() {
+            var table = document.getElementById("myTable");
+            var tabRows = table.rows.length;
+            var tabColumn = table.rows[0].cells.length;
+
+            do {
+                var y = prompt("Enter the postion where to add :");
+            } while (isNaN(y) || (y < 1 && y > tabRows) || y == '');
+
+            th = document.createElement('TH');
+            var x = prompt("Enter column name :");
+            th.innerHTML = x;
+            hrow.appendChild(th);
+
+            for (var i = 1; i < tabRows; i++) {
+                var row = document.getElementById(i + "");
+                row.insertCell(y).innerHTML = "Row" + i + " CELL" + (tabColumn + 1);
+            }
+        }
+        /**
+         *@Constructor
+         *@function used to delete Column from specified index
+         */
+        function deleteColumn() {
+            var table = document.getElementById("myTable");
+            var tabRows = table.rows;
+            var tabColumn = table.rows[0].cells.length;
+
+            /**
+             *param{number}: x- index number to be deleted.
+             */
+            do {
+                var x = prompt("Enter column number :");
+            } while (isNaN(x) || (x < 1 && x > tabColumn) || x == '');
+
+            for (var i = 0; i < tabRows.length; i++) {
+                tabRows[i].deleteCell(x - 1); //delete the cell
+            }
+        }
+    </script>
+</head>
+
+<body onload="addTable()" bgcolor="cyan">
+    <center>
+        <div class="centered">
+            <input type="button" onclick="addRow()" value="Add Row">
+            <input type="button" onclick="addColumn()" value="Add Column">
+            <input type="button" onclick="deleteColumn()" value="Remove Column">
+            <!--Display the table-->
+            <div id="myDynamicTable"></div>
+        </div>
+    </center>
+</body>
+
+</html>

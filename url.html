@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>URL Parts</title>
+    <script>
+        /**
+         *@URL to divide into protocal, host, pathname
+         */
+        var url = window.location.href;
+        document.write(url + "<br><br>");
+
+        /**
+         *Display Protocol
+         */
+        var protocal = window.location.protocol;
+        document.write("protocol is: " + protocal + "<br><br>");
+
+        /**
+         *Display host
+         */
+        var hostname = window.location.host;
+        document.write("hostname is: " + hostname + "<br><br>");
+
+        /**
+         *Display pathname
+         */
+        var pathname = window.location.pathname;
+        document.write("pathname is: " + pathname + "<br><br>");
+    </script>
+</head>
+<body>
+</body>
+</html>
