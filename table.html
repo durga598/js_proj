@@ -109,7 +109,7 @@
 
             for (var i = 1; i < tabRows; i++) {
                 var row = document.getElementById(i + "");
-                row.insertCell(y).innerHTML = "Row" + i + " CELL" + (tabColumn + 1);
+                row.insertCell((y-1)).innerHTML = "Row" + i + " CELL" + (tabColumn + 1);
             }
         }
         /**
