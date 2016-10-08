@@ -1,0 +1,273 @@
+<!--
+*@fileName:btree.html
+*@createBy:Durga
+*date:08/10/2016
+*purpose:implementation of BinarySearchTree -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BinarySearchTree</title>
+    <script>
+        function BinarySearchTree() {
+            this.root = null;
+        }
+
+        /**
+         *@Constructor
+         *@function used to create new node element in tree
+         */
+        BinarySearchTree.prototype.makeNode = function(value) {
+            var node = {};
+            node.value = value;
+            node.left = null;
+            node.right = null;
+            return node;
+        };
+
+        /**
+         *@function used to add element with value in tree
+         */
+        BinarySearchTree.prototype.add = function(value) {
+            var currentNode = this.makeNode(value);
+            if (!this.root) {
+                this.root = currentNode;
+                document.write(value + " added to tree." + "<br><br>");
+            } else {
+                this.insert(currentNode);
+            }
+
+            return this;
+        };
+
+        /**
+         *@function used to insert element respect to need
+         */
+        BinarySearchTree.prototype.insert = function(currentNode) {
+            var value = currentNode.value;
+            var traverse = function(node) {
+                if (value > node.value) {
+                    if (!node.right) {
+                        node.right = currentNode;
+                        document.write(value + " added to tree." + "<br><br>");
+                        return;
+                    } else traverse(node.right);
+                } else if (value < node.value) {
+                    if (!node.left) {
+                        node.left = currentNode;
+                        document.write(value + " added to tree." + "<br><br>");
+                        return;
+                    } else traverse(node.left);
+                } else if (value == node.value) {
+                    document.write(value + " Duplicate value." + "<br><br>");
+                }
+            };
+            traverse(this.root);
+        };
+
+        /**
+         *@function return boolean value, according to presence of element
+         */
+        BinarySearchTree.prototype.contains = function(value) {
+            var node = this.root;
+            var traverse = function(node) {
+                if (!node) return false;
+                if (value === node.value) {
+                    return true;
+                } else if (value > node.value) {
+                    return traverse(node.right);
+                } else if (value < node.value) {
+                    return traverse(node.left);
+                }
+            };
+            return traverse(node);
+        };
+
+        /* BREADTH FIRST TREE TRAVERSAL */
+
+        /* Breadth First Search finds all the siblings at each level
+           in order from left to right or from right to left. */
+
+        BinarySearchTree.prototype.breadthFirstLTR = function() {
+            var node = this.root;
+            var queue = [node];
+            var result = [];
+            while (node = queue.shift()) {
+                result.push(node.value);
+                node.right && queue.push(node.right);
+                node.left && queue.push(node.left);
+            }
+            return result;
+        };
+
+        /*DEPTH FIRST TRAVERSALS*/
+
+        /*  preOrder is a type of depth-first traversal that tries
+            togo deeper in the tree before exploring siblings. It
+            returns the shallowest descendants first.
+            1) Display the data part of root element (or current element)
+            2) Traverse the left subtree by recursively calling the pre-order function.
+            3) Traverse the right subtree by recursively calling the pre-order function. */
+
+        BinarySearchTree.prototype.preOrder = function() {
+            var result = [];
+            var node = this.root;
+            var traverse = function(node) {
+                result.push(node.value);
+                node.left && traverse(node.left);
+                node.right && traverse(node.right);
+            };
+            traverse(node);
+            return result;
+        };
+        /*  inOrder traversal is a type of depth-first traversal
+            that also tries to go deeper in the tree before exploring siblings.
+            however, it returns the deepest descendents first
+            1) Traverse the left subtree by recursively calling the pre-order function.
+            2) Display the data part of root element (or current element)
+            3) Traverse the right subtree by recursively calling the pre-order function. */
+
+        BinarySearchTree.prototype.inOrder = function() {
+            var result = [];
+            var node = this.root;
+            var traverse = function(node) {
+                node.left && traverse(node.left);
+                result.push(node.value);
+                node.right && traverse(node.right);
+            };
+            traverse(node);
+            return result;
+        };
+
+        /*  postOrder traversal is a type of depth-first traversal
+            that also tries to go deeper in the tree before exploring siblings.
+            however, it returns the deepest descendents first
+            1) Traverse the left subtree by recursively calling the pre-order function.
+            2) Display the data part of root element (or current element)
+            3) Traverse the right subtree by recursively calling the pre-order function. */
+
+
+        BinarySearchTree.prototype.postOrder = function() {
+            var result = [];
+            var node = this.root; + "<br>"
+            var traverse = function(node) {
+                node.left && traverse(node.left);
+                node.right && traverse(node.right);
+                result.push(node.value);
+            };
+            traverse(node);
+            return result;
+        };
+
+        //find the left most node to find the min value of a binary tree;
+        BinarySearchTree.prototype.findMin = function() {
+            var node = this.root;
+            var traverse = function(node) {
+                return !node.left ? node.value : traverse(node.left);
+            };
+            return traverse(node);
+        };
+
+        //find the right most node to find the max value of a binary tree;
+        BinarySearchTree.prototype.findMax = function() {
+            var node = this.root;
+            var traverse = function(node) {
+                return !node.right ? node.value : traverse(node.right);
+            };
+            return traverse(node);
+        };
+
+
+        //creating BinarySearchTree object
+        var bst = new BinarySearchTree();
+        do {
+            var num = prompt("Enter total no of number you want to add.");
+        } while (isNaN(num) || num < 1 || num == '');
+        for (var i = 0; i < num; i++) {
+            do {
+                var number = prompt("Enter number to add in binary tree");
+            } while (isNaN(number) || number < 1 || number == '');
+            bst.add(number);
+        }
+
+        /**
+         *@function calls function{contains()} and alerts present or not .
+         */
+        function checkPre() {
+            do {
+                var number = prompt("Enter number to check presence in binary tree");
+            } while (isNaN(number) || number < 1 || number == '');
+            if (bst.contains(number)) {
+                alert(number + " is present in tree.");
+            } else alert(number + " is not present in tree.");;
+        }
+
+        /**
+         *@function used to create button in webpage
+         *@function {checkButton} : check for presence of element in tree
+         *@function {maxButton} : gives maximum value of tree
+         *@function {minButton} : gives minimum value of tree
+         */
+        function allButton() {
+            checkButton();
+            maxButton();
+            minButton();
+        }
+
+        function checkButton() {
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("Check Presence");
+            btn.onclick = checkPre;
+            btn.appendChild(t);
+            document.body.appendChild(btn);
+        }
+
+        function maxButton() {
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("Find Max");
+            btn.onclick = findMax;
+            btn.appendChild(t);
+            document.body.appendChild(btn);
+        }
+
+        function minButton() {
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("Find Min");
+            btn.onclick = findMin;
+            btn.appendChild(t);
+            document.body.appendChild(btn);
+        }
+
+        //function to alert maximum number value present in BinarySearchTree
+        function findMax() {
+            alert("Maximum value is " + bst.findMax());
+        }
+
+        //function to alert minimum number value present in BinarySearchTree
+        function findMin() {
+            alert("Minimum value is " + bst.findMin());
+        }
+
+        //TESTS
+
+        console.log(bst);
+
+        document.write("---------- PreOrder ----------" + "<br>");
+        document.write(bst.preOrder().toString() + "<br>");
+
+        document.write("---------- PostOrder ----------" + "<br>");
+        document.write(bst.postOrder().toString() + "<br>");
+
+        document.write("---------- InOrder ----------" + "<br>");
+        document.write(bst.inOrder().toString() + "<br>");
+
+        document.write("---------- BreadthFirstLTR ----------" + "<br>");
+        document.write(bst.breadthFirstLTR().toString() + "<br>");
+    </script>
+</head>
+
+<body onload="allButton();">
+</body>
+
+</html>
