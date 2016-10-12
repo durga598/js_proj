@@ -45,12 +45,12 @@
             if (!override) {
                 //create a new tuple in our bucket
                 bucket.push([key, value]);
-                this.count++
-                    //now that we've addedretrive data877 our new key/val pair to our storage
-                    //let's check to see if we need to resize our storage
-                    if (this.count > this.limit * 0.75) {
-                        this.resize(this.limit * 2);
-                    }
+                this.count++;
+                //now that we've addedretrive data877 our new key/val pair to our storage
+                //let's check to see if we need to resize our storage
+                if (this.count > this.limit * 0.75) {
+                    this.resize(this.limit * 2);
+                }
             }
             return this;
         };
@@ -79,7 +79,10 @@
         };
 
 
-
+        /**
+         *retrieve value associate with key
+         *function{key value} return value
+         */
         HashTable.prototype.retrieve = function(key) {
             var index = this.getHashNumber(key, this.limit);
             var bucket = this.hashArray[index];
@@ -109,7 +112,7 @@
             return hash;
         };
 
-
+        //function use to resize the hashArray length
         HashTable.prototype.resize = function(newLimit) {
             var oldStorage = this.hashArray;
 
@@ -128,41 +131,102 @@
             }.bind(this));
         };
 
-
+        //function to retrive all the data from hashArray
         HashTable.prototype.retrieveAll = function() {
-            document.write(this.hashArray+"<br><br>");
-            document.write("limit of HashTable :"+this.limit+"<br><br>");
+            for (var i = 0; i < this.hashArray.length; i++) {
+                document.getElementById("res").innerHTML += "<br>" + "hashArray[key,value]= " + "hashArray[" + i + "]: " + this.hashArray[i] + "<br>";
+
+            }
+            document.getElementById("res").innerHTML += "-------------------------------------";
         };
 
-        /******************************TESTS*******************************/
+
+        /**
+         *Create Button on page.
+         */
+        function allButton() {
+            insertButton();
+            retrieveAllButton();
+            retrieveButton();
+            removeButton();
+
+        }
 
         var hashT = new HashTable();
 
-        hashT.insert('Steve', '123');
-        hashT.insert('Sachin', '234');
-        hashT.insert('Smith', '109');
-        hashT.insert('Lamb', '555');
-        hashT.insert('John', '877');
-        hashT.insert('Brace', '109');
-        hashT.insert('Dolly', '445');
-        hashT.insert('Euroke', '23');
+        /**
+         *function insertButton() creates insert button, take key and value from user and insert into hashArray
+         */
+        function insertButton() {
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("Insert");
+            btn.onclick = function() {
+                do {
+                    var key = prompt("Enter Key");
+                } while (key == '');
 
-      hashT.retrieveAll();hashArray
-        hashT.remove('Rick Mires');
-        hashT.remove('Tom Bradey');
-        hashT.retrieveAll();
+                var value = prompt("Enter Value");
 
+                hashT.insert(key, value);
 
+            };
+            btn.appendChild(t);
+            document.body.appendChild(btn);
+        }
 
-document.write("retrive data"+"<br><br>");
-        document.write(hashT.retrieve('John')+"<br><br>");
-        document.write(hashT.retrieve('Dolly')+"<br><br>");
-        document.write(hashT.retrieve('Steve')+"<br><br>");
+        /**
+         *function retrieveAllButton() return the hashArray
+         */
+        function retrieveAllButton() {
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("retrive all");
+            btn.onclick = function() {
+                hashT.retrieveAll();
+            }
+            btn.appendChild(t);
+            document.body.appendChild(btn);;
+        }
+
+        /**
+         *function retrieveButton alerts the value associate with the key input by user
+         */
+        function retrieveButton() {
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("retrive");
+            btn.onclick = function() {
+                do {
+                    var key = prompt("Enter the Key");
+                } while (key == '');
+
+                if (hashT.retrieve(key) == null) {
+                    alert("Key not present");
+                } else {
+                    alert("Value is " + hashT.retrieve(key));
+                }
+
+            };
+            btn.appendChild(t);
+            document.body.appendChild(btn);;
+        }
+
+        /**
+         *function removeButton remove the value and key input by user from hashArray
+         */
+        function removeButton() {
+            var btn = document.createElement("BUTTON");
+            var t = document.createTextNode("Remove");
+            btn.onclick = function() {
+                var key = prompt("Enter Key");
+                hashT.remove(key);
+            };
+            btn.appendChild(t);
+            document.body.appendChild(btn);
+        }
     </script>
 </head>
 
-<body>
-
+<body onload="allButton();">
+    <p id="res"></p>
 </body>
 
 </html>
