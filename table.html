@@ -35,10 +35,16 @@
              */
             do {
                 var trow = prompt("Enter total row");
+                if (isNaN(trow) || trow < 1 || trow == '') {
+                    alert("Enter positive number");
+                }
             } while (isNaN(trow) || trow < 1 || trow == '');
             do {
                 var tcolumn = prompt("Enter total columns");
-            } while (isNaN(trow) || trow < 1 || trow == '');
+                if (isNaN(tcolumn) || tcolumn < 1 || tcolumn == '') {
+                    alert("Enter positive number");
+                }
+            } while (isNaN(tcolumn) || tcolumn < 1 || tcolumn == '');
 
             /**
              *creates table header
@@ -48,7 +54,13 @@
 
             for (var i = 1; i <= tcolumn; i++) {
                 th = document.createElement('TH');
-                var x = prompt("Enter " + i + " : column name :");
+                do {
+                    var x = prompt("Enter " + i + " : column name :");
+                    if (x == null||x=='') {
+                        alert("Enter a name.");
+                    }
+                }
+                while (x == null||x=='');
                 th.innerHTML = x;
                 hrow.appendChild(th);
             }
@@ -100,10 +112,19 @@
 
             do {
                 var y = prompt("Enter the postion where to add :");
+                if (isNaN(y) || (y < 1 || y > (tabColumn + 1)) || y == '') {
+                    alert("Enter positive number & number should be less than column+1");
+                }
             } while (isNaN(y) || (y < 1 || y > (tabColumn + 1)) || y == '');
 
             th = document.createElement('TH');
-            var x = prompt("Enter column name :");
+            do {
+                var x = prompt("Enter column name :");
+                if (x == null||x=='') {
+                    alert("Enter a name.");
+                }
+            }
+            while (x == null||x=='');
             th.innerHTML = x;
             hrow.appendChild(th);
 
@@ -126,6 +147,9 @@
              */
             do {
                 var x = prompt("Enter column number :");
+                if (isNaN(x) || (x < 1 && x > tabColumn) || x == '') {
+                    alert("Enter positive number");
+                }
             } while (isNaN(x) || (x < 1 && x > tabColumn) || x == '');
 
             for (var i = 0; i < tabRows.length; i++) {
