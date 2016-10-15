@@ -100,7 +100,7 @@
 
             do {
                 var y = prompt("Enter the postion where to add :");
-            } while (isNaN(y) || (y < 1 && y > tabRows) || y == '');
+            } while (isNaN(y) || (y < 1 || y > (tabColumn + 1)) || y == '');
 
             th = document.createElement('TH');
             var x = prompt("Enter column name :");
@@ -109,7 +109,7 @@
 
             for (var i = 1; i < tabRows; i++) {
                 var row = document.getElementById(i + "");
-                row.insertCell((y-1)).innerHTML = "Row" + i + " CELL" + (tabColumn + 1);
+                row.insertCell((y - 1)).innerHTML = "Row" + i + " CELL" + (tabColumn + 1);
             }
         }
         /**
