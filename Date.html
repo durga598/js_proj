@@ -1,7 +1,7 @@
 <!--
-*@fileName:date.html
+*@fileName:digital.html
 *@createBy:Durga
-*date:05/10/2016
+*date:04/10/2016
 *purpose:Extending Date Object -->
 
 <!DOCTYPE html>
@@ -34,7 +34,13 @@
          *@Returns NextDayName
          */
         Date.prototype.getNextDay = function() {
+          if (this.getUTCDay()<6) {
             return daynames[this.getUTCDay() + 1];
+          }
+          else {
+            return daynames[0];
+          }
+
         };
         /**
          *@Writes Present Day Name And Next Day Name .
