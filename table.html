@@ -110,13 +110,6 @@
             var tabRows = table.rows.length;
             var tabColumn = table.rows[0].cells.length;
 
-            do {
-                var y = prompt("Enter the postion where to add :");
-                if (isNaN(y) || (y < 1 || y > (tabColumn + 1)) || y == '') {
-                    alert("Enter positive number & number should be less than column+1");
-                }
-            } while (isNaN(y) || (y < 1 || y > (tabColumn + 1)) || y == '');
-
             th = document.createElement('TH');
             do {
                 var x = prompt("Enter column name :");
@@ -130,7 +123,7 @@
 
             for (var i = 1; i < tabRows; i++) {
                 var row = document.getElementById(i + "");
-                row.insertCell((y - 1)).innerHTML = "Row" + i + " CELL" + (tabColumn + 1);
+                row.insertCell(tabColumn).innerHTML = "Row" + i + " CELL" + (tabColumn + 1);
             }
         }
         /**
