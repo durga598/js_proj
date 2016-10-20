@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    p {
+ word-break: break-all;
+}
+    </style>
+    <script>
+        var arr;
+
+        function arrCreate() {
+          arr=[];
+            do {
+                var x = prompt("Enter first number :");
+                if (x == null) {
+                    break;
+                } else if (isNaN(x) || x < 0 || x == '') {
+                    alert("Enter positive number");
+                }
+            } while (isNaN(x) || x < 0 || x == '');
+            do {
+                var y = prompt("Enter second number :");
+                if (y == null) {
+                    break;
+                }
+else if (y<x) {
+  alert("Enter a bigger number than first one");
+}
+                 else if (isNaN(y) || y < 0 || y == '') {
+                    alert("Enter positive number");
+                }
+            } while (isNaN(y) || (y < 0) || (y<x) || y == '');
+            for (var i = x; i <= y; i++) {
+                arr[i] = i;
+            }
+            document.getElementById("array").innerHTML = "Array is"+"<br>"+"["+arr.toString()+"]";
+        }
+
+
+        function oddNumber(x) {
+            if (x % 2 != 0) {
+                return x;
+            }
+        }
+
+        function evenNumber(x) {
+            if (x % 2 == 0) {
+                return x;
+            }
+        }
+
+        function odd() {
+            document.getElementById("demo").innerHTML = "Odd Numbers"+"<br>"+arr.filter(oddNumber);
+        }
+
+        function even() {
+            document.getElementById("demo").innerHTML =  "Even Numbers"+"<br>"+arr.filter(evenNumber);
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" name="name" value="Create Array" onclick="arrCreate()">
+    <input type="button" name="name" value="odd" onclick="odd()">
+    <input type="button" name="name" value="even" onclick="even()">
+<p id="array">
+
+</p>
+    <p id="demo"></p>
+</body>
+
+</html>
