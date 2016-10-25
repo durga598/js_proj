@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var myList = function() {
+			this.myListArray = [];
+			this.count = 0;
+		};
+
+		myList.prototype.push = function(key, quantity) {
+			var arr = [];
+			arr[0] = key;
+			arr[1] = quantity;
+			if (this.count == 0) {
+				this.myListArray[this.count] = arr;
+				this.count++;
+			} else {
+				var index = this.myListArray.length;
+				this.myListArray[index] = arr;
+			}
+		}
+
+		myList.prototype.pop = function() {
+			var ar = this.myListArray;
+			var arr = [];
+			for (var i = 0, len = ar.length - 1; i < len; i++) {
+				arr[i] = ar[i];
+			}
+			this.myListArray = arr;
+		}
+
+		myList.prototype.shift = function() {
+			var ar = this.myListArray;
+			var arr = [];
+			for (var i = 1, len = ar.length; i < len; i++) {
+				arr[i - 1] = ar[i];
+			}
+			this.myListArray = arr;
+		}
+
+		myList.prototype.unshift = function(key, quantity) {
+			var arr = [];
+			arr[0] = key;
+			arr[1] = quantity;
+			var resar = [];
+			resar[0] = arr;
+			var ar = this.myListArray;
+			for (var i = 0, len = ar.length; i < len; i++) {
+				resar[i + 1] = ar[i];
+			}
+			this.myListArray = resar;
+
+		}
+		myList.prototype.toString = function() {
+			var ar = this.myListArray;
+			var res = "[";
+			for (var i = 0, len = ar.length; i < len; i++) {
+				var resIn = "[";
+				// inner loop applies to sub-arrays
+				for (var j = 0, len2 = ar[i].length; j < len2; j++) {
+					// accesses each element of each sub-array in turn
+					resIn += ar[i][j];
+					if (j != len2 - 1) {
+						resIn += ", ";
+					}
+				}
+				resIn += "]";
+				if (i != len - 1) {
+					resIn += ", ";
+				}
+				res += resIn;
+			}
+			res += "]"
+			return res;
+		}
+
+
+
+		var mylist = new myList();
+		mylist.push("Chocolate Bar", "50");
+		mylist.push("ice-cream", "5");
+		mylist.push("cracker", "30");
+		mylist.push("biscuit", "8");
+		console.log(mylist.toString());
+		mylist.pop();
+		console.log(mylist.toString());
+		mylist.shift();
+		console.log(mylist.toString());
+		mylist.unshift("pen", "3");
+		console.log(mylist.toString());
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
