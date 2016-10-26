@@ -1,0 +1,83 @@
+<!--
+*@fileName:golf.html
+*@createBy:Durga
+*date:26/10/2016
+*purpose:golf score if--elseif using javascript -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Golf</title>
+    <script type="text/javascript">
+        /**
+         *@Constructor
+         *function to get nick
+         *{param}:par takes the par value from input id par
+         *{param}:stroke takes the stoke value from input id stroke
+         */
+        function getNick() {
+            var par = parseInt(document.getElementById("par").value);
+            var stroke = parseInt(document.getElementById("stroke").value);
+            //Write the nick result in id nick.
+            document.getElementById("nick").innerHTML = golfScore(par, stroke);
+        }
+        /**
+         * function accept two argument par and stroke
+         * returns the nick according to condition.
+         */
+        function golfScore(par, stroke) {
+            if (stroke == 1) {
+                return "Hole-in-one!";
+            } else if (stroke <= par - 2) {
+                return "Eagle";
+            } else if (stroke == par - 1) {
+                return "Birdie";
+            } else if (stroke == par) {
+                return "Par";
+            } else if (stroke == par + 1) {
+                return "Bogey";
+            } else if (stroke == par + 2) {
+                return "Double Bogey";
+            } else if (stroke >= par + 3) {
+                return "Go Home!";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Golf Score</legend>
+
+
+        <table>
+            <tr>
+                <td>
+                    <label for="par">par</label>
+                </td>
+                <td>
+                    <input type="number" id="par" value="par" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="stroke">stroke</label>
+                </td>
+                <td>
+                    <input type="number" id="stroke" value="stroke" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" name="nick" value="Get Nick" onclick="getNick();">
+                </td>
+                <td id="nick">
+
+                </td>
+            </tr>
+    </fieldset>
+
+</body>
+
+</html>
