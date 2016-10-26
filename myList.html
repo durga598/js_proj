@@ -1,19 +1,37 @@
+<!--
+*@fileName:myList.html
+*@createBy:Durga
+*date:26/10/2016
+*purpose:myList with push,pop,shift,unshift implementation using javascript -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background: lavender;">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script>
+	/**
+	 *@Constructor
+	 *@function used to myList
+	 */
 		var myList = function() {
 			this.myListArray = [];
 			this.count = 0;
 		};
-
+		/**
+		 *@Constructor
+		 *@function used to push element into list
+		 */
 		myList.prototype.push = function(key, quantity) {
+			/**
+			 *adding key and quantity to a new 2D array.
+			 */
 			var arr = [];
 			arr[0] = key;
 			arr[1] = quantity;
+			/**
+			 *adding 2D array to multi dimension list array.
+			 */
 			if (this.count == 0) {
 				this.myListArray[this.count] = arr;
 				this.count++;
@@ -22,7 +40,10 @@
 				this.myListArray[index] = arr;
 			}
 		}
-
+		/**
+		 *@Constructor
+		 *@function used to pop element from list
+		 */
 		myList.prototype.pop = function() {
 			var ar = this.myListArray;
 			var arr = [];
@@ -55,47 +76,152 @@
 
 		}
 		myList.prototype.toString = function() {
-			var ar = this.myListArray;
-			var res = "[";
-			for (var i = 0, len = ar.length; i < len; i++) {
-				var resIn = "[";
-				// inner loop applies to sub-arrays
-				for (var j = 0, len2 = ar[i].length; j < len2; j++) {
-					// accesses each element of each sub-array in turn
-					resIn += ar[i][j];
-					if (j != len2 - 1) {
+				var ar = this.myListArray;
+				var res = "[";
+				for (var i = 0, len = ar.length; i < len; i++) {
+					var resIn = "[";
+					// inner loop applies to sub-arrays
+					for (var j = 0, len2 = ar[i].length; j < len2; j++) {
+						// accesses each element of each sub-array in turn
+						resIn += ar[i][j];
+						if (j != len2 - 1) {
+							resIn += ", ";
+						}
+					}
+					resIn += "]";
+					if (i != len - 1) {
 						resIn += ", ";
 					}
+					res += resIn;
 				}
-				resIn += "]";
-				if (i != len - 1) {
-					resIn += ", ";
-				}
-				res += resIn;
+				res += "]"
+				return res;
 			}
-			res += "]"
-			return res;
+			/**
+			 *Create Button on page.
+			 */
+		function allButton() {
+			pushButton();
+			popButton();
+			shiftButton();
+			unshiftButton();
+			showButton();
 		}
 
+		function pushButton() {
+			var btn = document.createElement("BUTTON");
+			var t = document.createTextNode("push()");
+			btn.onclick = function() {
+				do {
+					var key = prompt("Enter item name");
+					if (key == null) {
+						return;
+					}
+					if (key == '') {
+						alert("Enter name");
+					}
+				} while (key == '');
+				do {
+					var quantity = prompt("Enter quantity");
+					if (quantity == null) {
+						return;
+					}
+					if (quantity == '' || isNaN(quantity)) {
+						alert("Enter quantity");
+					}
+				} while (quantity == '' || isNaN(quantity));
 
+				mylist.push(key, quantity);
+				console.log(mylist.toString());
+			};
+			btn.appendChild(t);
+			document.body.appendChild(btn);
+		}
 
+		function popButton() {
+			var btn = document.createElement("BUTTON");
+			var t = document.createTextNode("pop()");
+			btn.onclick = function() {
+				if (mylist.myListArray.length > 0) {
+					mylist.pop();
+				} else {
+					alert("There is no more item");
+				}
+			};
+			btn.appendChild(t);
+			document.body.appendChild(btn);
+		}
+
+		function shiftButton() {
+			var btn = document.createElement("BUTTON");
+			var t = document.createTextNode("shift()");
+			btn.onclick = function() {
+				if (mylist.myListArray.length > 0) {
+					mylist.shift();
+				} else {
+					alert("There is no more item");
+				}
+			};
+			btn.appendChild(t);
+			document.body.appendChild(btn);
+		}
+
+		function unshiftButton() {
+			var btn = document.createElement("BUTTON");
+			var t = document.createTextNode("unshift()");
+			btn.onclick = function() {
+				do {
+					var key = prompt("Enter item name");
+					if (key == null) {
+						return;
+					}
+					if (key == '') {
+						alert("Enter name");
+					}
+				} while (key == '');
+				do {
+					var quantity = prompt("Enter quantity");
+					if (quantity == null) {
+						return;
+					}
+					if (quantity == '' || isNaN(quantity)) {
+						alert("Enter quantity");
+					}
+				} while (quantity == '' || isNaN(quantity));
+
+				mylist.unshift(key, quantity);
+				console.log(mylist.toString());
+			};
+			btn.appendChild(t);
+			document.body.appendChild(btn);
+		}
+
+		function showButton() {
+			var btn = document.createElement("BUTTON");
+			var t = document.createTextNode("show");
+			btn.onclick = function() {
+				document.getElementById("show").innerHTML = mylist.toString();
+			};
+			btn.appendChild(t);
+			document.body.appendChild(btn);
+		}
 		var mylist = new myList();
-		mylist.push("Chocolate Bar", "50");
-		mylist.push("ice-cream", "5");
-		mylist.push("cracker", "30");
-		mylist.push("biscuit", "8");
-		console.log(mylist.toString());
-		mylist.pop();
-		console.log(mylist.toString());
-		mylist.shift();
-		console.log(mylist.toString());
-		mylist.unshift("pen", "3");
+		// mylist.push("Chocolate Bar", "50");
+		// mylist.push("ice-cream", "5");
+		// mylist.push("cracker", "30");
+		// mylist.push("biscuit", "8");
+		// console.log(mylist.toString());
+		// mylist.pop();
+		// console.log(mylist.toString());
+		// mylist.shift();
+		// console.log(mylist.toString());
+		// mylist.unshift("pen", "3");
 		console.log(mylist.toString());
 	</script>
 </head>
 
-<body>
-
+<body onload="allButton();">
+	<p id="show"></p>
 </body>
 
 </html>
