@@ -1,0 +1,24 @@
+<!--
+*@fileName:regexp.html
+*@createBy:Durga
+*date:26/10/2016
+*purpose:split using regexp: javascript -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>regexp</title>
+    <script type="text/javascript">
+        var regex = /[,:.]/; // delimiters are comma, colon, and period
+        //var str = 'Tim:20,Henry:30.Linda:35';
+        var str = 'Denis:33,Booty:24,Pit:31.Brace:9';
+        alert(str.split(regex)); // => [Denis,33,Booty,24,Pit,31,Brace,9]
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
